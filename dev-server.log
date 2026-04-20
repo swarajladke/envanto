@@ -1,0 +1,35 @@
+
+> solo-digital-store@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.33
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 8.6s (1404 modules)
+ GET / 200 in 74ms
+ GET / 200 in 88ms
+ GET / 200 in 95ms
+ ✓ Compiled in 1059ms (1377 modules)
+ ✓ Compiled in 818ms (1377 modules)
+ GET / 200 in 324ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 639ms (1366 modules)
+ GET /_next/static/css/app/layout.css?v=1776587522064 404 in 894ms
+ GET /_next/static/chunks/webpack.js?v=1776587522064 404 in 933ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 204ms
+ GET /_next/static/chunks/main-app.js?v=1776587522064 404 in 217ms
+ GET /_next/static/chunks/app/not-found.js 404 in 216ms
+ GET /_next/static/chunks/app/page.js 404 in 219ms
+ GET /_next/static/chunks/app/layout.js 404 in 217ms
+ GET /_next/static/css/app/layout.css?v=1776587522064 404 in 43ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 66ms
+ ○ Compiling /products/[slug] ...
+ ✓ Compiled /products/[slug] in 886ms (1408 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.2s (1635 modules)
+ GET /products/mini-dashboard-freebie 500 in 4225ms
+ GET / 200 in 271ms
+[?25h
