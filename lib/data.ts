@@ -7,47 +7,43 @@ export const brand = {
 };
 
 export const categoryMeta: { value: ProductCategory; label: string }[] = [
-  { value: "website-templates", label: "Website Templates" },
-  { value: "ui-kits", label: "UI Kits" },
   { value: "figma-templates", label: "Figma Templates" },
   { value: "graphics", label: "Graphics" },
-  { value: "illustrations", label: "Illustrations" },
-  { value: "free", label: "Free" }
+  { value: "logos", label: "Logos" },
+  { value: "website-templates", label: "Website Templates" },
+  { value: "ai-images", label: "AI Images" }
 ];
 
 const pexelsImage = (id: string, width = 1600) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
 
 const remoteImageSets: Record<string, string[]> = {
-  "Nova Dashboard": ["3861969", "6804602", "577585", "5716032", "4974915"],
-  Arcfolio: ["4065140", "1181244", "4348404", "270404", "1037993"],
-  "Lumen Kit": ["356844", "167699", "1108572", "132037", "210186"],
-  "Illustration Pack": ["1761279", "3560044", "3694708", "2014422", "3052361"],
-  "Social Graphics": ["17866470", "20678550", "1687574", "18604528", "14877067"],
-  "Mini Dashboard Free": ["355580", "1646311", "2033336", "9503287", "12993384"],
-  "Commerce Template": ["5632402", "6214376", "4968391", "3796810", "7661590"],
-  "Finance Dashboard": ["5716001", "7567486", "4386370", "2102416", "6804074"],
-  "Onboarding Free Pack": ["17852335", "14206321", "9503287", "26861379", "16692145"],
-  "Creator Brand Kit": ["4348401", "6476589", "1181304", "5077046", "3052361"],
-  "SaaS Illustration Vol.2": ["2033336", "1646311", "355580", "12993384", "17866470"],
-  "Startup Landing Free": ["18604528", "26861379", "14877067", "1687574", "20678550"]
+  "Nova Dashboard": ["/images/dashboard.png"],
+  "Arcfolio": ["/images/portfolio.png"],
+  "Lumen Kit": ["/images/landing.png"],
+  "Illustration Pack": ["/images/components.png"],
+  "Social Graphics": ["https://images.pexels.com/photos/2510428/pexels-photo-2510428.jpeg?auto=compress&cs=tinysrgb&w=1600"],
+  "Mini Dashboard Free": ["/images/dashboard.png"],
+  "Commerce Template": ["/images/ecommerce.png"],
+  "Finance Dashboard": ["/images/dataviz.png"],
+  "Onboarding Free Pack": ["/images/auth.png"],
+  "Creator Brand Kit": ["/images/hybrid.png"],
+  "SaaS Illustration Vol.2": ["/images/dark.png"],
+  "Startup Landing Free": ["/images/onepage.png"]
 };
 
 function buildImages(title: string, ...legacyColors: string[]) {
   void legacyColors;
-  const ids = remoteImageSets[title];
+  const assets = remoteImageSets[title];
 
-  if (!ids) {
+  if (!assets) {
     return [
-      pexelsImage("355580"),
-      pexelsImage("1646311"),
-      pexelsImage("2033336"),
-      pexelsImage("9503287"),
-      pexelsImage("12993384")
+      "/images/landing.png",
+      "/images/dashboard.png"
     ];
   }
 
-  return ids.map((id, index) => pexelsImage(id, index === 0 ? 1600 : 1400));
+  return assets;
 }
 
 export const products: Product[] = [
@@ -59,7 +55,7 @@ export const products: Product[] = [
     description: "A production-ready UI kit with deep variant coverage and clean auto-layout.",
     longDescription:
       "Nova Dashboard UI Kit is crafted for solo creators and agency teams building modern products. It includes complete design tokens, component variants, chart blocks, and ready page flows across desktop and mobile.",
-    category: "ui-kits",
+    category: "figma-templates",
     formats: ["Figma", "Sketch"],
     price: 49,
     originalPrice: 79,
@@ -154,7 +150,7 @@ export const products: Product[] = [
     description: "Cohesive illustration scenes for onboarding, billing, and analytics.",
     longDescription:
       "A versatile collection of hand-crafted vector scenes across product, fintech, and collaboration use cases. Comes with organized layers and color style variants.",
-    category: "illustrations",
+    category: "graphics",
     formats: ["Figma", "Adobe XD"],
     price: 34,
     rating: 4.9,
@@ -215,7 +211,7 @@ export const products: Product[] = [
     description: "A free UI starter to kickstart dashboard experiments.",
     longDescription:
       "The Mini Dashboard Freebie gives you a polished analytics screen with sidebar navigation, charts, and KPI cards. Perfect for personal projects and MVPs.",
-    category: "free",
+    category: "figma-templates",
     formats: ["Figma"],
     price: 0,
     rating: 4.7,
@@ -308,7 +304,7 @@ export const products: Product[] = [
     description: "Compact illustration bundle for onboarding screens and empty states.",
     longDescription:
       "A free, consistent set of onboarding scenes for dashboards, SaaS apps, and portfolio projects. Lightweight and easy to recolor.",
-    category: "free",
+    category: "graphics",
     formats: ["Figma", "Sketch"],
     price: 0,
     rating: 4.8,
@@ -363,7 +359,7 @@ export const products: Product[] = [
     description: "A stylized set of launch-quality dark illustration scenes.",
     longDescription:
       "Vol. 2 brings deeper storytelling visuals for pricing, onboarding, support, and analytics pages, optimized for dark interfaces.",
-    category: "illustrations",
+    category: "graphics",
     formats: ["Figma"],
     price: 37,
     rating: 4.8,
@@ -390,7 +386,7 @@ export const products: Product[] = [
     description: "A free launch kit with hero, features, pricing, and FAQ blocks.",
     longDescription:
       "Startup Landing UI Kit Free helps indie makers publish fast with a refined section stack and modular style controls.",
-    category: "free",
+    category: "website-templates",
     formats: ["Figma", "HTML"],
     price: 0,
     rating: 4.7,

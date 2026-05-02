@@ -17,7 +17,8 @@ export function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isPricingPage = pathname === "/pricing";
-  const isProductsPage = pathname === "/products";
+  const isProductsPage = pathname === "/products" || pathname.startsWith("/products/");
+  const isDashboardPage = pathname === "/dashboard";
   const isAuthPage = pathname === "/signin" || pathname === "/signup";
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -40,7 +41,7 @@ export function Navbar() {
 
   const cartCount = useMemo(() => (mounted ? totalItems : 0), [mounted, totalItems]);
 
-  if (isPricingPage || isProductsPage || isAuthPage) return null;
+  if (isPricingPage || isProductsPage || isAuthPage || isDashboardPage || isHomePage) return null;
 
   return (
     <>
@@ -53,13 +54,25 @@ export function Navbar() {
         >
           <div className="container-shell flex h-[76px] items-center justify-between gap-4">
             <Link href="/" className="focus-ring rounded-md">
-              <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">envato</span>
+              <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</span>
             </Link>
 
-            <div className="hidden items-center gap-3 lg:flex">
+            <div className="hidden items-center gap-2 lg:flex">
+              <Link
+                href="/signin"
+                className="focus-ring rounded-md px-3 py-2 text-base font-semibold text-[#333] transition hover:text-[#171717]"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/signup"
+                className="focus-ring rounded-md px-3 py-2 text-base font-semibold text-[#333] transition hover:text-[#171717]"
+              >
+                Sign Up
+              </Link>
               <LinkButton
                 href="/pricing"
-                className="h-12 rounded-lg bg-[#8CF45D] px-6 text-base font-semibold text-[#171717] hover:brightness-95"
+                className="ml-2 h-12 rounded-lg bg-[#8CF45D] px-6 text-base font-semibold text-[#171717] hover:brightness-95"
               >
                 Get unlimited downloads
               </LinkButton>
@@ -193,6 +206,16 @@ export function Navbar() {
               ))}
             </div>
             <div className="mt-8 space-y-3">
+              {isHomePage && (
+                <div className="mb-4 flex gap-3">
+                  <Link href="/signin" className="focus-ring flex w-full items-center justify-center rounded-lg border border-[#dcdad4] py-[10px] text-[0.95rem] font-semibold text-[#171717] transition hover:bg-[#f8f8f8]">
+                    Sign In
+                  </Link>
+                  <Link href="/signup" className="focus-ring flex w-full items-center justify-center rounded-lg border border-[#dcdad4] py-[10px] text-[0.95rem] font-semibold text-[#171717] transition hover:bg-[#f8f8f8]">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
               <LinkButton href="/pricing" className="w-full justify-center bg-[#8CF45D] text-[#171717] hover:brightness-95">
                 {isHomePage ? "Get unlimited downloads" : "Get Access"}
               </LinkButton>

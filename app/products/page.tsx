@@ -5,7 +5,7 @@ import type { ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Motion Graphics Video Templates",
-  description: "Explore an Envato-style marketplace catalog for templates, graphics, UI kits, and digital assets."
+  description: "Explore an ZOR-style marketplace catalog for templates, graphics, UI kits, and digital assets."
 };
 
 export default function ProductsPage({

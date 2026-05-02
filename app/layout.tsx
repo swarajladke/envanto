@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono, Syne } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { Footer } from "@/components/shared/footer";
@@ -8,17 +7,18 @@ import { SearchOverlay } from "@/components/shared/search-overlay";
 import { QuickViewModal } from "@/components/products/quick-view-modal";
 import { ToastRegion } from "@/components/shared/toast-region";
 import { CookieBanner } from "@/components/shared/cookie-banner";
+import { Inter, JetBrains_Mono, Syne } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"]
+});
 
 const display = Syne({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["700", "800"]
-});
-
-const body = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"]
 });
 
 const mono = JetBrains_Mono({
@@ -68,12 +68,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body className={`${display.variable} ${body.variable} ${mono.variable}`}>
+      <body className={`${display.variable} ${inter.variable} ${mono.variable} font-inter`}>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
         <Navbar />
-        <main id="main-content" className="pt-20">
+        <main id="main-content">
           {children}
         </main>
         <Footer />

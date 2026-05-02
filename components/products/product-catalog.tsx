@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, CircleUser, Globe, Moon, Search, SlidersHorizontal, X } from "lucide-react";
+import { BookmarkPlus, ChevronDown, CircleUser, Copy, Download, Globe, Moon, Search, SlidersHorizontal, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { categoryMeta } from "@/lib/data";
@@ -159,35 +159,35 @@ export function ProductCatalog({
     <div className={marketplaceMode ? "min-h-screen bg-white text-[#171717]" : "bg-[#fbf3e9] text-[#171717]"}>
       {marketplaceMode && <MarketplaceTopbar />}
 
-      <section className={marketplaceMode ? "bg-white py-6 sm:py-7" : "bg-[#fbf3e9] py-8 sm:py-10"}>
-        <div className={`container-shell ${marketplaceMode ? "max-w-[1180px]" : "max-w-[1380px]"}`}>
-          <div className={`border-b border-[#e4ddd2] ${marketplaceMode ? "pb-4" : "pb-6"}`}>
+      <section className={marketplaceMode ? "bg-[#f8efe4] pb-8 pt-2" : "bg-[#fbf3e9] py-8 sm:py-10"}>
+        <div className={`container-shell ${marketplaceMode ? "max-w-[1260px]" : "max-w-[1380px]"}`}>
+          <div className={marketplaceMode ? "" : "border-b border-[#e4ddd2] pb-6"}>
             {marketplaceMode ? (
               <>
-                <div className="flex flex-wrap items-center gap-2 text-[0.86rem] text-[#6c6258]">
-                  <span>All Items</span>
-                  <span className="text-[#b18bd9]">›</span>
-                  <span>Video Templates</span>
-                  <span className="text-[#b18bd9]">›</span>
+                <div className="flex flex-wrap items-center gap-2 text-[0.82rem] font-medium text-[#7a6f65]">
+                  <span className="hover:text-[#171717] cursor-pointer">All Items</span>
+                  <span className="text-[#bbaaa0]">»</span>
+                  <span className="hover:text-[#171717] cursor-pointer">Video Templates</span>
+                  <span className="text-[#bbaaa0]">»</span>
                   <span className="text-[#4e4741]">After Effects</span>
                 </div>
               </>
             ) : (
               <p className="text-[0.78rem] font-medium uppercase tracking-[0.22em] text-[#9b7d6b]">
-                Envato-style catalog
+                ZOR-style catalog
               </p>
             )}
 
             <div className={`flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between ${marketplaceMode ? "mt-2" : "mt-3"}`}>
               <div>
                 <h1
-                  className={`font-body font-bold tracking-[-0.06em] text-[#171717] ${
-                    marketplaceMode ? "text-[clamp(2.2rem,3.3vw,3.25rem)] leading-[1.04]" : "text-[clamp(2rem,3.6vw,3.4rem)]"
+                  className={`font-body tracking-[-0.06em] text-[#171717] ${
+                    marketplaceMode ? "text-[clamp(2.2rem,3.3vw,3.25rem)] leading-[1.04]" : "font-bold text-[clamp(2rem,3.6vw,3.4rem)]"
                   }`}
                 >
                   {marketplaceMode ? (
                     <>
-                      <span className="text-[#b538ba]">Motion Graphics</span> Video Templates
+                      <span className="font-bold bg-gradient-to-r from-[#d92c7d] to-[#7f39b0] bg-clip-text text-transparent">After Effects</span> <span className="font-medium">Video Templates</span>
                     </>
                   ) : (
                     heading ?? "Motion Graphics Video Templates"
@@ -195,19 +195,34 @@ export function ProductCatalog({
                 </h1>
                 <p
                   className={`max-w-3xl text-[#5e544c] ${
-                    marketplaceMode ? "mt-2 text-[0.98rem] leading-8" : "mt-2 text-[1rem]"
+                    marketplaceMode ? "mt-3 text-[1rem] leading-7" : "mt-2 text-[1rem]"
                   }`}
                 >
-                  {description ??
-                    "Browse marketplace-style template results with compact filters, dense previews, and faster scanning."}
+                  {marketplaceMode ? (
+                    <>
+                      Produce stand-out videos with studio-quality After Effects templates and visual effects.<br/>
+                      Customize your projects with fully editable <a href="#" className="underline decoration-[#999] underline-offset-4">logo animations</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">slideshows</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">text</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">titles</a> and <a href="#" className="underline decoration-[#999] underline-offset-4">transitions</a>.
+                    </>
+                  ) : (
+                    description ?? "Browse marketplace-style template results with compact filters, dense previews, and faster scanning."
+                  )}
                 </p>
+                {marketplaceMode && (
+                  <button type="button" className="mt-2 text-[0.95rem] font-medium text-[#171717] underline decoration-[#999] underline-offset-4 hover:text-black">
+                    Show More
+                  </button>
+                )}
               </div>
               {marketplaceMode ? null : (
                 <p className="text-sm font-medium text-[#5f5a55]">{itemCount} items found</p>
               )}
             </div>
           </div>
+        </div>
+      </section>
 
+      <section className={marketplaceMode ? "bg-white py-8" : "bg-[#fbf3e9] pb-8 sm:pb-10"}>
+        <div className={`container-shell ${marketplaceMode ? "max-w-[1260px]" : "max-w-[1380px]"}`}>
           <div className="mt-5 flex items-center justify-between gap-3 lg:hidden">
             <p className="text-sm text-[#5f5a55]">{itemCount} results</p>
             <Button variant="secondary" size="sm" onClick={() => setIsMobileFilterOpen(true)}>
@@ -216,13 +231,45 @@ export function ProductCatalog({
             </Button>
           </div>
 
+          {marketplaceMode && (
+            <div className="mb-6 hidden items-center justify-between lg:flex">
+              <button type="button" className="flex items-center gap-2 text-[0.92rem] font-bold text-[#171717] hover:text-[#555]">
+                <SlidersHorizontal className="size-4" /> Hide Filters
+              </button>
+              <div className="flex items-center gap-2 text-[0.92rem] text-[#6a5f57]">
+                Sort by{" "}
+                <div className="relative inline-block">
+                  <select
+                    id="sort-by-market"
+                    value={sortBy}
+                    onChange={(event) => setSortBy(event.target.value as SortValue)}
+                    className="focus-ring cursor-pointer appearance-none bg-transparent pr-4 font-bold text-[#171717] outline-none"
+                  >
+                    <option value="newest">Newest</option>
+                    <option value="bestseller">Popular</option>
+                    <option value="price-low">Price low-high</option>
+                    <option value="price-high">Price high-low</option>
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-0 top-1/2 size-3.5 -translate-y-1/2 text-[#171717]" />
+                </div>
+              </div>
+            </div>
+          )}
+
           <div
-            className={`grid ${marketplaceMode ? "mt-4 gap-6 lg:grid-cols-[240px_1fr]" : "mt-6 gap-6 lg:grid-cols-[220px_1fr]"}`}
+            className={`grid ${marketplaceMode ? "gap-6 lg:grid-cols-[220px_1fr]" : "mt-6 gap-6 lg:grid-cols-[220px_1fr]"}`}
           >
             <aside className="hidden lg:block">
               <div
-                className={`sticky top-16 ${marketplaceMode ? "border-r border-[#e4ddd2] pr-8" : "rounded-[2px] border border-[#e4ddd2] bg-white p-4"}`}
+                className={`sticky top-16 ${marketplaceMode ? "pr-6" : "rounded-[2px] border border-[#e4ddd2] bg-white p-4"}`}
               >
+                {marketplaceMode && (
+                  <div className="mb-6 border-b border-[#e4ddd2] pb-4">
+                    <button type="button" onClick={resetFilters} className="flex items-center gap-2 text-[0.88rem] font-bold text-[#171717] hover:text-[#555]">
+                      <X className="size-[18px]" /> Clear all
+                    </button>
+                  </div>
+                )}
                 <FilterPanel
                   search={search}
                   onSearchChange={setSearch}
@@ -244,46 +291,32 @@ export function ProductCatalog({
             </aside>
 
             <main>
-              <div
-                className={`mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ${
-                  marketplaceMode
-                    ? "border-b border-[#e4ddd2] pb-2"
-                    : "rounded-[2px] border border-[#e4ddd2] bg-white px-4 py-3"
-                }`}
-              >
-                <div className={`flex items-center gap-2 text-[#5f5a55] ${marketplaceMode ? "text-[0.78rem]" : "text-sm"}`}>
-                  {marketplaceMode ? (
-                    <button className="flex items-center gap-1.5 font-semibold text-[#171717] hover:underline">
-                      <SlidersHorizontal className="size-3.5" /> Hide Filters
-                    </button>
-                  ) : (
-                    <>
-                      <span className="font-medium text-[#171717]">
-                        Showing {visibleProducts.length}
-                      </span>
-                      <span className="hidden sm:inline">from {itemCount} results</span>
-                    </>
-                  )}
+              {!marketplaceMode && (
+                <div className="mb-3 flex flex-col gap-2 rounded-[2px] border border-[#e4ddd2] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center gap-2 text-sm text-[#5f5a55]">
+                    <span className="font-medium text-[#171717]">
+                      Showing {visibleProducts.length}
+                    </span>
+                    <span className="hidden sm:inline">from {itemCount} results</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <label className="sr-only" htmlFor="sort-by">
+                      Sort products
+                    </label>
+                    <select
+                      id="sort-by"
+                      value={sortBy}
+                      onChange={(event) => setSortBy(event.target.value as SortValue)}
+                      className="focus-ring h-10 rounded-[4px] border border-[#ddd4ca] bg-white px-3 text-sm text-[#171717]"
+                    >
+                      <option value="newest">Newest</option>
+                      <option value="bestseller">Best selling</option>
+                      <option value="price-low">Price low-high</option>
+                      <option value="price-high">Price high-low</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <label className="sr-only" htmlFor="sort-by">
-                    Sort products
-                  </label>
-                  <select
-                    id="sort-by"
-                    value={sortBy}
-                    onChange={(event) => setSortBy(event.target.value as SortValue)}
-                    className={`focus-ring rounded-[4px] border border-[#ddd4ca] bg-white px-3 text-[#171717] ${
-                      marketplaceMode ? "h-8 text-[0.78rem]" : "h-10 text-sm"
-                    }`}
-                  >
-                    <option value="newest">Newest</option>
-                    <option value="bestseller">Best selling</option>
-                    <option value="price-low">Price low-high</option>
-                    <option value="price-high">Price high-low</option>
-                  </select>
-                </div>
-              </div>
+              )}
 
               {loading ? (
                 <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${marketplaceMode ? "xl:grid-cols-5" : "xl:grid-cols-4"}`}>
@@ -295,7 +328,7 @@ export function ProductCatalog({
                 <>
                   <div
                     className={`grid grid-cols-2 sm:grid-cols-3 ${
-                      marketplaceMode ? "gap-2 lg:grid-cols-4 xl:grid-cols-4" : "gap-3 xl:grid-cols-4"
+                      marketplaceMode ? "gap-1 lg:grid-cols-3 xl:grid-cols-3" : "gap-3 xl:grid-cols-4"
                     }`}
                   >
                     {marketplaceMode
@@ -467,31 +500,23 @@ function FilterPanel({
   compact: boolean;
 }) {
   return (
-    <div className={compact ? "space-y-7" : "space-y-5"}>
-      <div>
-        <p
-          className={`mb-3 font-semibold text-[#8b7767] ${
-            compact ? "text-[1rem] normal-case tracking-normal" : "text-xs uppercase tracking-[0.18em]"
-          }`}
-        >
-          Search
-        </p>
-        <div
-          className={`flex items-center border border-[#ddd4ca] ${
-            compact ? "rounded-[4px] bg-white px-3" : "rounded-[6px] bg-[#fbf8f4] px-3"
-          }`}
-        >
-          <Search className={`${compact ? "size-3.5" : "size-4"} text-[#776b61]`} />
-          <input
-            value={search}
-            onChange={(event) => onSearchChange(event.target.value)}
-            placeholder={compact ? "Search term..." : "Search templates"}
-            className={`focus-ring w-full bg-transparent text-[#171717] placeholder:text-[#97897c] ${
-              compact ? "h-10 px-2 text-[1rem]" : "h-10 px-2 text-sm"
-            }`}
-          />
+    <div className={compact ? "space-y-6" : "space-y-5"}>
+      {!compact && (
+        <div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#8b7767]">
+            Search
+          </p>
+          <div className="flex items-center rounded-[6px] border border-[#ddd4ca] bg-[#fbf8f4] px-3">
+            <Search className="size-4 text-[#776b61]" />
+            <input
+              value={search}
+              onChange={(event) => onSearchChange(event.target.value)}
+              placeholder="Search templates"
+              className="focus-ring w-full bg-transparent h-10 px-2 text-sm text-[#171717] placeholder:text-[#97897c]"
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <FilterGroup title="Categories">
         {categoryMeta.map((entry) => (
@@ -648,14 +673,14 @@ function MarketplaceTile({
   marketplaceMode?: boolean;
 }) {
   const category = categoryMeta.find((entry) => entry.value === product.category)?.label ?? product.category;
-  const targetHref = marketplaceMode ? "/products/startup-landing-ui-kit-free" : `/products/${product.slug}`;
+  const targetHref = `/products/${product.slug}`;
 
   return (
     <Link href={targetHref} className="focus-ring block rounded-[2px]">
       <article className="group">
         <div
           className={`relative overflow-hidden rounded-[2px] border border-[#ded6cc] bg-black ${
-            marketplaceMode ? "aspect-[16/9]" : "aspect-[1.1/1]"
+            marketplaceMode ? "aspect-square" : "aspect-square"
           }`}
         >
           <Image
@@ -666,6 +691,35 @@ function MarketplaceTile({
             className="object-cover transition duration-300 group-hover:scale-[1.03]"
             sizes={marketplaceMode ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 18vw" : "(max-width: 640px) 50vw, (max-width: 1280px) 33vw, 20vw"}
           />
+          
+          {marketplaceMode && (
+            <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-between bg-black/0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-0 transition-all duration-300 group-hover:opacity-100">
+              <div className="flex justify-end p-2 opacity-0 transition-opacity delay-75 duration-300 group-hover:opacity-100">
+                <button type="button" aria-label="Save to collection" className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition hover:bg-white/30">
+                  <BookmarkPlus className="size-[18px]" />
+                </button>
+              </div>
+              
+              <div className="p-3 opacity-0 transition-opacity delay-150 duration-300 group-hover:opacity-100">
+                <h4 className="line-clamp-1 text-[0.95rem] font-medium text-white">{product.title}</h4>
+                <p className="mt-0.5 text-[0.75rem] text-white/80">by <span className="underline decoration-white/40 underline-offset-2">ZOR Creator</span></p>
+                
+                <div className="mt-3 flex items-center justify-between">
+                  <button type="button" aria-label="Show similar items" className="pointer-events-auto flex items-center gap-1.5 rounded-[4px] bg-white/20 px-2 py-1 text-[0.75rem] font-medium text-white backdrop-blur-md transition hover:bg-white/30">
+                    <Copy className="size-[14px]" /> Similar
+                  </button>
+                  <button type="button" aria-label="Download" className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-[#8CF45D] text-[#171717] transition hover:brightness-95">
+                    <Download className="size-[16px]" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-white/20">
+                <div className="h-full w-0 bg-[#8CF45D] transition-all duration-[4000ms] ease-linear group-hover:w-full" />
+              </div>
+            </div>
+          )}
+
           {!marketplaceMode && product.badge && (
             <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#171717]">
               {product.badge}
@@ -749,71 +803,75 @@ function Pagination({
 
 function MarketplaceTopbar() {
   return (
-    <header className="border-b border-[#e4ddd2] bg-[#f8efe4]">
-      <div className="mx-auto w-full max-w-[1260px] px-4">
-        <div className="flex items-center justify-between gap-5 py-3.5">
-          <div className="flex items-center gap-8">
-            <Link href="/" className="focus-ring rounded-md">
-              <span className="font-body text-[1.55rem] font-bold tracking-[-0.06em] text-[#171717]">envato</span>
-            </Link>
-            <nav className="hidden items-center gap-8 xl:flex">
-              {["Gen AI", "Video Templates", "Stock Video", "Audio", "Graphics", "More"].map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  className="focus-ring inline-flex items-center gap-1 rounded-md text-[0.9rem] font-medium text-[#4b433d]"
-                >
-                  {item}
-                  <ChevronDown className="size-4" />
-                </button>
-              ))}
-            </nav>
-          </div>
+    <header>
+      <div className="bg-[#f8efe4]">
+        <div className="mx-auto w-full max-w-[1260px] px-4">
+          <div className="flex items-center justify-between gap-4 py-2">
+            <div className="flex items-center gap-8">
+              <Link href="/" className="focus-ring flex items-center rounded-md">
+                <svg className="mr-1.5" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.16 3.96C20.66 3.46 19.98 3.16 19.23 3.13C18.66 3.11 18.06 3.23 17.43 3.48C13.62 5.01 9.4 8.65 6.7 12.75C5.86 14.02 5.17 15.34 4.67 16.66C4.42 17.34 4.09 18.3 4.29 19.12C4.42 19.68 4.77 20.21 5.31 20.59C5.91 21.01 6.64 21.13 7.33 20.97C8.19 20.76 9.07 19.99 9.8 19.06C11.83 16.48 13.56 12.98 14.88 9.29C15.5 7.55 15.89 5.8 15.93 4.23C15.94 3.79 15.77 3.46 15.54 3.23C15.3 3 14.96 2.91 14.6 2.94C13.88 3.01 13.06 3.33 12.19 3.84C8.61 5.92 4.96 10.37 2.84 15.68C2.55 16.4 2.29 17.15 2.08 17.91C1.94 18.42 1.83 18.94 1.76 19.46L1.67 20.19L2.34 19.86C4.01 19.03 5.48 17.65 6.6 15.95C9.37 11.75 13.73 8.04 17.65 6.47C18.2 6.25 18.72 6.13 19.21 6.15C19.5 6.16 19.74 6.24 19.89 6.39C20.04 6.54 20.1 6.75 20.05 6.99C19.89 7.82 19.34 8.76 18.44 9.68C16.92 11.23 14.54 12.87 11.66 14.28L10.96 14.62L11.58 15.02C13.25 16.1 15.11 16.92 17.06 17.43C17.69 17.6 18.33 17.69 18.97 17.69C19.97 17.69 20.93 17.45 21.75 16.97C22.75 16.4 23.47 15.42 23.77 14.24C24.08 13 23.95 11.63 23.4 10.37C22.84 9.1 21.9 8.02 20.73 7.3C19.78 6.72 18.72 6.36 17.6 6.25C17.7 6.07 17.81 5.88 17.92 5.68C18.66 4.3 19.68 3.52 20.72 3.44C20.98 3.42 21.24 3.49 21.46 3.66L21.84 3.95L21.16 3.96Z" fill="#8CF45D"/></svg>
+                <span className="font-body text-[1.55rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</span>
+              </Link>
+              <nav className="hidden items-center gap-5 xl:flex">
+                {["Figma Templates", "Graphics", "Logos", "Website Templates", "AI Images"].map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    className="focus-ring inline-flex items-center gap-1 rounded-md text-[0.92rem] font-medium text-[#4b433d] hover:text-[#171717]"
+                  >
+                    {item}
+                    <ChevronDown className="size-3.5 text-[#888]" />
+                  </button>
+                ))}
+              </nav>
+            </div>
 
-          <div className="hidden items-center gap-6 xl:flex">
-            <Link href="/search?q=license" className="focus-ring rounded-md text-[0.9rem] font-medium text-[#38312c]">
-              License
-            </Link>
-            <Link href="/search?q=enterprise" className="focus-ring rounded-md text-[0.9rem] font-medium text-[#38312c]">
-              Enterprise
-            </Link>
-            <Link href="/pricing" className="focus-ring rounded-md text-[0.9rem] font-medium text-[#38312c]">
-              Pricing
-            </Link>
-            <Link
-              href="/pricing"
-              className="focus-ring inline-flex h-12 items-center justify-center rounded-[4px] bg-[#8CF45D] px-7 text-[0.95rem] font-semibold text-[#171717]"
-            >
-              Get unlimited downloads
-            </Link>
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#f1ece6] text-[#171717]">
-              <Moon className="size-5 fill-current" />
-            </span>
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#ece8e2] text-[1rem] font-semibold text-[#171717]">
-              SL
-            </span>
+            <div className="hidden items-center gap-5 xl:flex">
+              <Link href="/search?q=license" className="focus-ring rounded-md text-[0.92rem] font-medium text-[#38312c] hover:text-[#171717]">
+                License
+              </Link>
+              <Link href="/search?q=enterprise" className="focus-ring rounded-md text-[0.92rem] font-medium text-[#38312c] hover:text-[#171717]">
+                Enterprise
+              </Link>
+              <Link href="/pricing" className="focus-ring rounded-md text-[0.92rem] font-medium text-[#38312c] hover:text-[#171717]">
+                Pricing
+              </Link>
+              <Link
+                href="/pricing"
+                className="focus-ring inline-flex h-9 items-center justify-center whitespace-nowrap rounded-[4px] bg-[#8CF45D] px-5 text-[0.88rem] font-semibold text-[#171717] transition hover:brightness-95"
+              >
+                Get unlimited downloads
+              </Link>
+              <Link href="/dashboard" className="focus-ring rounded-full" aria-label="Profile">
+                <CircleUser className="size-[26px] text-[#171717] hover:text-black" />
+              </Link>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="hidden pb-5 xl:block">
-          <div className="flex h-[64px] items-center overflow-hidden rounded-full border border-[#d8d0c6] bg-white">
-            <button
-              type="button"
-              className="focus-ring inline-flex h-full items-center gap-2 border-r border-[#ddd6cc] px-8 text-[0.95rem] font-medium text-[#171717]"
-            >
-              Video Templates
-              <ChevronDown className="size-4" />
-            </button>
-            <div className="flex min-w-0 flex-1 items-center gap-3 px-6">
-              <Search className="size-6 text-[#1b1b1b]" />
-              <input
-                type="text"
-                value=""
-                readOnly
-                aria-label="Search products"
-                placeholder="Search"
-                className="w-full bg-transparent text-[1rem] text-[#171717] placeholder:text-[#9f9488]"
-              />
+      <div className="bg-[#f8efe4]">
+        <div className="mx-auto w-full max-w-[1260px] px-4 pb-4 pt-5">
+          <div className="hidden xl:block">
+            <div className="mx-auto flex h-[54px] max-w-[840px] items-center overflow-hidden rounded-full border border-[#e4dcd2] bg-white shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+              <button
+                type="button"
+                className="focus-ring inline-flex h-full items-center gap-2 border-r border-[#ece6de] px-6 text-[0.95rem] font-medium text-[#171717] hover:bg-gray-50"
+              >
+                Video Templates
+                <ChevronDown className="size-4 text-[#888]" />
+              </button>
+              <div className="flex min-w-0 flex-1 items-center gap-3 px-5">
+                <Search className="size-[18px] text-[#9f9488]" />
+                <input
+                  type="text"
+                  value=""
+                  readOnly
+                  aria-label="Search products"
+                  placeholder="Search"
+                  className="w-full bg-transparent text-[1.05rem] text-[#171717] placeholder:text-[#9f9488] outline-none"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -828,7 +886,7 @@ function MarketplaceFooter() {
       <div className="mx-auto w-full max-w-[1180px] px-4">
         <div className="grid gap-8 xl:grid-cols-[0.8fr_2.5fr]">
           <div>
-            <p className="font-body text-[2.15rem] font-bold tracking-[-0.06em] text-[#171717]">envato</p>
+            <p className="font-body text-[2.15rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</p>
             <div className="mt-3 flex gap-3 text-[#171717]">
               {["ig", "tt", "fb", "yt", "rd", "pi", "x"].map((item) => (
                 <span key={item} className="text-[0.95rem] font-semibold uppercase">
@@ -857,7 +915,7 @@ function MarketplaceFooter() {
         <div className="mt-8 border-t border-[#ddd1c6] pt-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[1rem] text-[#4a433c]">
-              {["Envato Market", "Envato Tuts+", "Placeit by Envato", "Mixkit", "All Products", "Sitemap"].map((item) => (
+              {["ZOR Market", "ZOR Learn", "ZOR Create", "Mixkit", "All Products", "Sitemap"].map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>

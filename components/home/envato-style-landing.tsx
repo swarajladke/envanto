@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Download, ShieldCheck, Sparkles, Store, Zap } from "lucide-react";
+import { ChevronDown, Download, ShieldCheck, Sparkles, Store, Zap, Search, Image as ImageIcon } from "lucide-react";
 import { products } from "@/lib/data";
 
 const pexelsImage = (id: string, width = 1600) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
+
+const localImage = (name: string) => `/images/${name}.png`;
 
 const topBenefits = [
   {
@@ -55,43 +57,43 @@ const middleBenefits = [
 ];
 
 const faqs = [
-  "What is Envato?",
-  "Do any limits apply to downloads?",
-  "How does licensing work?",
+  "What's included with each template?",
+  "Do templates work with multiple apps?",
+  "How do updates and downloads work?",
   "Can I cancel or upgrade any time?"
 ];
 
 const templateCards = [
-  { title: "Openers", product: products[0], image: pexelsImage("1646311"), alt: "Aerial view of powerful blue ocean waves" },
+  { title: "Openers", product: products[0], image: localImage("vfx_openers"), alt: "Openers template" },
   {
     title: "Product Promos",
     product: products[1],
-    image: pexelsImage("18604528"),
-    alt: "Aerial tropical beach with lush green shoreline"
+    image: localImage("vfx_promos"),
+    alt: "Product promos template"
   },
   {
     title: "Titles",
     product: products[2],
-    image: pexelsImage("26861379"),
-    alt: "Quiet mountain lake surrounded by alpine greenery"
+    image: localImage("vfx_titles"),
+    alt: "Titles template"
   },
   {
     title: "Video Displays",
     product: products[3],
-    image: pexelsImage("17866470"),
-    alt: "Waterfall cascading through a lush green forest"
+    image: localImage("vfx_video"),
+    alt: "Video displays template"
   },
   {
     title: "Logo Stings",
     product: products[4],
-    image: pexelsImage("14877067"),
-    alt: "Meandering river cutting through a forested valley"
+    image: localImage("vfx_logo"),
+    alt: "Logo stings template"
   },
   {
     title: "Broadcast Packages",
     product: products[8],
-    image: pexelsImage("1687574"),
-    alt: "Sunset beach with glowing sky and calm surf"
+    image: pexelsImage("2582818"),
+    alt: "Broadcast packages template"
   }
 ];
 
@@ -99,114 +101,114 @@ const creativeCards = [
   {
     title: "Stock Video",
     product: products[1],
-    image: pexelsImage("355580"),
-    alt: "Ocean wave rolling toward shore in bright daylight"
+    image: pexelsImage("853168"),
+    alt: "Skydiver or extreme sports"
   },
   {
     title: "Video Templates",
     product: products[4],
-    image: pexelsImage("2033336"),
-    alt: "Rugged cliffs and swirling ocean waves from above"
+    image: pexelsImage("3183150"),
+    alt: "Abstract patterns"
   },
   {
     title: "Stock Photos",
     product: products[3],
-    image: pexelsImage("9503287"),
-    alt: "Wide aerial view of a forest waterfall under blue sky"
+    image: pexelsImage("1386604"),
+    alt: "Creative portrait"
   },
   {
     title: "Royalty-Free Music",
     product: products[10],
-    image: pexelsImage("16692145"),
-    alt: "Pastel sunset over beach dunes and shoreline"
+    image: pexelsImage("164745"),
+    alt: "Musician playing guitar"
   },
   {
     title: "Sound Effects",
     product: products[11],
-    image: pexelsImage("14206321"),
-    alt: "Rocky waterfall with vibrant green forest foliage"
+    image: pexelsImage("3370381"),
+    alt: "Color powder explosion"
   },
   {
     title: "Graphic Templates",
     product: products[6],
-    image: pexelsImage("12993384"),
-    alt: "Turquoise ocean wave rising in open water"
+    image: pexelsImage("1989823"),
+    alt: "Abstract 3D blocks"
   },
   {
     title: "Fonts",
     product: products[9],
-    image: pexelsImage("20678550"),
-    alt: "Beach sunset with wooden pier and reflective water"
+    image: pexelsImage("3826678"),
+    alt: "Creative typography"
   },
   {
     title: "Graphics",
     product: products[5],
-    image: pexelsImage("17852335"),
-    alt: "Dense green forest waterfall surrounded by ferns"
+    image: pexelsImage("1037992"),
+    alt: "Colorful fluid texture"
   }
 ];
 
 const heroLeft = [
   {
     key: "hero-left-1",
-    image: pexelsImage("355580", 900),
-    alt: "Ocean wave with bright blue water",
+    image: localImage("hero_left_1"),
+    alt: "FO typography",
     className:
       "left-[2%] top-[68px] z-10 h-[108px] w-[76px] sm:left-[3%] sm:top-[72px] sm:h-[148px] sm:w-[102px] lg:left-[4%] lg:top-[86px] lg:h-[216px] lg:w-[114px]"
   },
   {
     key: "hero-left-2",
-    image: pexelsImage("18604528", 1100),
-    alt: "Tropical beach aerial with turquoise sea",
+    image: localImage("hero_left_2"),
+    alt: "Abstract purple fluid",
     className:
       "left-[14%] top-[46px] z-20 h-[126px] w-[86px] sm:left-[12%] sm:top-[44px] sm:h-[182px] sm:w-[120px] lg:left-[12%] lg:top-[54px] lg:h-[252px] lg:w-[138px]"
   },
   {
     key: "hero-left-3",
-    image: pexelsImage("26861379", 1200),
-    alt: "Alpine mountain lake with calm green water",
+    image: localImage("hero_left_3"),
+    alt: "What typography",
     className:
       "left-[28%] top-[28px] z-30 hidden h-[142px] w-[96px] sm:block sm:h-[190px] sm:w-[134px] lg:left-[22%] lg:top-[36px] lg:h-[286px] lg:w-[158px]"
   }
 ];
 
 const heroCenter = {
-  image: pexelsImage("2033336", 1800),
-  alt: "Dramatic cliffside ocean waves seen from above"
+  image: localImage("hero_center"),
+  alt: "Play button minimalist"
 };
 
 const heroRight = [
   {
     key: "hero-right-1",
-    image: pexelsImage("17866470", 1200),
-    alt: "Forest waterfall flowing through dense greenery",
+    image: localImage("hero_right_1"),
+    alt: "Glass architecture",
     className:
       "right-[24%] top-[28px] z-20 hidden h-[142px] w-[96px] sm:block sm:h-[190px] sm:w-[134px] lg:right-[18%] lg:top-[36px] lg:h-[286px] lg:w-[158px]"
   },
   {
     key: "hero-right-2",
-    image: pexelsImage("14877067", 1200),
-    alt: "Forest river winding through hills",
+    image: localImage("hero_right_2"),
+    alt: "Blue and yellow abstract",
     className:
       "right-[10%] top-[46px] z-10 h-[126px] w-[86px] sm:right-[8%] sm:top-[44px] sm:h-[182px] sm:w-[120px] lg:right-[8%] lg:top-[54px] lg:h-[252px] lg:w-[128px]"
   },
   {
     key: "hero-right-3",
-    image: pexelsImage("1687574", 1000),
-    alt: "Warm sunset beach with glowing sky",
+    image: localImage("hero_right_3"),
+    alt: "Black and white grunge",
     className:
       "right-[1%] top-[68px] z-0 h-[108px] w-[76px] sm:right-[2%] sm:top-[72px] sm:h-[148px] sm:w-[98px] lg:right-[3%] lg:top-[86px] lg:h-[216px] lg:w-[104px]"
   }
 ];
 
 const creatorSpotlightImage = {
-  image: pexelsImage("17866470", 1400),
-  alt: "Waterfall surrounded by dense green forest used in the creator spotlight"
+  image: pexelsImage("762020"),
+  alt: "Smiling woman in office"
 };
 
-export function EnvatoStyleLanding() {
+export function ZORStyleLanding() {
   return (
-    <div className="bg-white text-[#171717]">
+    <div className="bg-white pt-[76px] text-[#171717]">
       <section className="border-b border-[#ecebe7] bg-white">
         <div className="container-shell pt-12 sm:pt-14 lg:pt-16">
           <div className="mx-auto max-w-6xl text-center">
@@ -218,7 +220,7 @@ export function EnvatoStyleLanding() {
             </p>
             <Link
               href="/products"
-              className="focus-ring mt-6 inline-flex h-14 items-center justify-center rounded-xl bg-[#8CF45D] px-9 text-lg font-semibold text-[#171717] transition hover:brightness-95"
+              className="focus-ring mt-6 inline-flex h-10 items-center justify-center rounded-[4px] bg-[#8CF45D] px-6 text-[0.95rem] font-semibold text-[#171717] transition hover:brightness-95"
             >
               Start creating
             </Link>
@@ -354,7 +356,7 @@ export function EnvatoStyleLanding() {
             <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div>
                 <h2 className="max-w-4xl font-body text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.05em] text-[#171717]">
-                  Envato. The must-have subscription for any creative.
+                  ZOR. The must-have subscription for any creative.
                 </h2>
                 <div className="mt-10 grid gap-8 md:grid-cols-2">
                   {middleBenefits.map((item) => (
@@ -400,7 +402,15 @@ export function EnvatoStyleLanding() {
       <section id="categories" className="pb-8 pt-12 sm:pb-12 sm:pt-16">
         <div className="container-shell">
           <div className="mb-8 text-center sm:mb-12">
-            <p className="text-[1.1rem] font-semibold tracking-[-0.03em] text-[#171717]">Trusted by top brands</p>
+            <p className="text-[1.05rem] font-medium tracking-[0.02em] text-[#171717]">Trusted by top brands</p>
+            <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-8 opacity-60 grayscale filter sm:gap-14">
+              <span className="font-display text-xl font-bold tracking-tight">Google</span>
+              <span className="font-serif text-xl font-bold italic">KPMG</span>
+              <span className="font-sans text-xl font-black tracking-tighter">L&apos;OREAL</span>
+              <span className="font-mono text-xl font-bold uppercase">Adidas</span>
+              <span className="font-display text-xl font-semibold tracking-widest">Tencent</span>
+              <span className="font-serif text-xl">Deloitte</span>
+            </div>
           </div>
 
           <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
@@ -423,14 +433,14 @@ export function EnvatoStyleLanding() {
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {creativeCards.map((item) => (
               <Link key={item.title} href={`/products/${item.product.slug}`} className="focus-ring block">
-                <article className="rounded-[22px] border border-[#2b2b2b]/20 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
-                  <h3 className="text-[1.2rem] font-bold tracking-[-0.04em] text-[#171717]">{item.title}</h3>
-                  <div className="relative mt-4 aspect-[1.05/1] overflow-hidden rounded-[18px]">
+                <article className="group flex h-full flex-col overflow-hidden rounded-[8px] border border-[#e4e4e4] bg-white transition-shadow hover:shadow-md">
+                  <h3 className="px-4 py-3 text-[1.1rem] font-bold tracking-[-0.02em] text-[#171717]">{item.title}</h3>
+                  <div className="relative mx-3 mb-3 aspect-square overflow-hidden rounded-[6px] bg-[#f4f4f4]">
                     <Image
                       src={item.image}
                       alt={item.alt}
                       fill
-                      className="object-cover"
+                      className="object-cover transition duration-300 group-hover:scale-[1.03]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     />
                   </div>
@@ -465,7 +475,7 @@ export function EnvatoStyleLanding() {
         <div className="container-shell">
           <div className="overflow-hidden rounded-[26px] bg-[#f8efe4] lg:grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="px-8 py-10 sm:px-12 sm:py-14">
-              <p className="font-body text-[2.1rem] font-bold tracking-[-0.05em] text-[#171717]">envato</p>
+              <p className="font-body text-[2.1rem] font-bold tracking-[-0.05em] text-[#171717]">ZOR</p>
               <h2 className="mt-7 max-w-xl font-body text-[clamp(2.4rem,5vw,4.5rem)] font-bold leading-[0.95] tracking-[-0.06em] text-[#171717]">
                 Let&apos;s create something extraordinary.
               </h2>
@@ -476,13 +486,8 @@ export function EnvatoStyleLanding() {
                 Start creating
               </Link>
             </div>
-            <div className="relative min-h-[260px] bg-[linear-gradient(135deg,#80f06a_0%,#ff6fb3_46%,#1b1b1b_100%)]">
-              <div className="absolute inset-0 opacity-80">
-                <div className="absolute left-[6%] top-[0%] h-[70%] w-[55%] rounded-[40%] bg-[radial-gradient(circle,#6020ff_0%,transparent_70%)] opacity-70" />
-                <div className="absolute right-[10%] top-[18%] h-[58%] w-[44%] rounded-3xl bg-[#ff93c8]" />
-                <div className="absolute bottom-[0%] left-[35%] h-[48%] w-[36%] rounded-[28px] bg-white/85" />
-                <div className="absolute bottom-[0%] right-[0%] h-[42%] w-[28%] bg-[#121212]" />
-              </div>
+            <div className="relative min-h-[260px]">
+              <Image src={pexelsImage("796606")} alt="Pink balloons" fill className="object-cover" />
             </div>
           </div>
         </div>

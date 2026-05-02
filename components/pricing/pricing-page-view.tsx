@@ -185,12 +185,12 @@ const lovedRows = [
 ];
 
 const faqs = [
-  "What is Envato?",
+  "What is ZOR?",
   "Do any limits apply to downloads?",
   "How does licensing work?",
   "When can I cancel or upgrade my subscription?",
   "Can I get support for specific items?",
-  "Can you use an Envato subscription to download assets from Envato Market?",
+  "Can you use a ZOR subscription to download assets from ZOR Market?",
   "Are AI tools available for Enterprise?",
   "How are generations counted?",
   "What AI models are available?",
@@ -200,7 +200,7 @@ const faqs = [
 const footerColumns = [
   {
     title: "Discover",
-    links: ["About Envato", "Our Pricing & Plans", "Teams & Enterprise Plans", "Stock Video", "Video Templates", "Royalty-Free Music", "Stock Photos", "Fonts", "Popular Searches"]
+    links: ["About ZOR", "Our Pricing & Plans", "Teams & Enterprise Plans", "Stock Video", "Video Templates", "Royalty-Free Music", "Stock Photos", "Fonts", "Popular Searches"]
   },
   {
     title: "License & User Terms",
@@ -212,7 +212,7 @@ const footerColumns = [
   },
   {
     title: "About Us",
-    links: ["Who We Are", "Hey AI, learn about Envato", "Our Products", "Our Purpose", "Join Our Team", "Company Blog", "Authors", "Become an Author", "Author Sign In", "Author Help Center"]
+    links: ["Who We Are", "Hey AI, learn about ZOR", "Our Products", "Our Purpose", "Join Our Team", "Company Blog", "Authors", "Become an Author", "Author Sign In", "Author Help Center"]
   }
 ];
 
@@ -228,7 +228,17 @@ const navCategories = [
 
 export function PricingPageView() {
   const [planView, setPlanView] = useState<"individual" | "teams">("individual");
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
   const plans = planView === "individual" ? individualPlans : teamPlans;
+
+  const getDisplayPrice = (planPriceStr: string) => {
+    if (planPriceStr === "Custom") return "Custom";
+    const numeric = parseFloat(planPriceStr.replace("$", ""));
+    if (billingCycle === "yearly") {
+      return `$${(numeric * 0.8).toFixed(2)}`;
+    }
+    return planPriceStr;
+  };
 
   return (
     <div className="min-h-screen bg-[#f8efe4] text-[#171717]">
@@ -237,7 +247,7 @@ export function PricingPageView() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <Link href="/" className="focus-ring rounded-md">
-                <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">envato</span>
+                <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</span>
               </Link>
               <nav className="hidden items-center gap-5 xl:flex">
                 {navCategories.map((item) => (
@@ -327,6 +337,21 @@ export function PricingPageView() {
             </div>
           </div>
 
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <span className={`text-[1.05rem] font-medium ${billingCycle === "monthly" ? "text-[#171717]" : "text-[#777]"}`}>Pay Monthly</span>
+            <button
+              type="button"
+              onClick={() => setBillingCycle(prev => prev === "monthly" ? "yearly" : "monthly")}
+              className="relative inline-flex h-8 w-14 items-center rounded-full bg-[#171717] transition-colors"
+              aria-label="Toggle billing cycle"
+            >
+              <span className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${billingCycle === "yearly" ? "translate-x-7" : "translate-x-1"}`} />
+            </button>
+            <span className={`flex items-center gap-2 text-[1.05rem] font-medium ${billingCycle === "yearly" ? "text-[#171717]" : "text-[#777]"}`}>
+              Pay Yearly <span className="rounded-full bg-[#e3fadb] px-2 py-0.5 text-xs font-bold text-[#2a6813]">Save 20%</span>
+            </span>
+          </div>
+
           <div className={`mt-12 grid items-start gap-7 ${planView === "teams" ? "xl:grid-cols-4" : "xl:grid-cols-3"}`}>
             {plans.map((plan) => (
               <article
@@ -349,7 +374,7 @@ export function PricingPageView() {
                 ) : null}
                 <p className="mt-4 text-[1.1rem] text-[#2f2f2f]">{plan.intro}</p>
                 <p className="mt-1 flex items-end gap-1">
-                  <span className="text-[3.3rem] font-bold tracking-[-0.06em] text-[#171717]">{plan.price}</span>
+                  <span className="text-[3.3rem] font-bold tracking-[-0.06em] text-[#171717]">{getDisplayPrice(plan.price)}</span>
                   {plan.priceSuffix ? <span className="mb-3 text-[1.35rem] text-[#2f2f2f]">{plan.priceSuffix}</span> : null}
                 </p>
 
@@ -379,8 +404,8 @@ export function PricingPageView() {
 
           <p className="mt-10 text-center text-[1rem] text-[#555]">
             {planView === "individual"
-              ? "Price in US Dollars, excludes local tax. Subject to Envato's User Terms, including our Fair Use Policy."
-              : "Pricing shown in US Dollars. Team allowances scale by seats and enterprise plans are tailored with Envato's sales team."}
+              ? "Price in US Dollars, excludes local tax. Subject to ZOR's User Terms, including our Fair Use Policy."
+              : "Pricing shown in US Dollars. Team allowances scale by seats and enterprise plans are tailored with ZOR's sales team."}
           </p>
 
           <section className="mx-auto mt-16 max-w-5xl text-center">
@@ -463,14 +488,7 @@ export function PricingPageView() {
               </div>
               <div className="divide-y divide-[#e8e4dc] border-t border-[#e8e4dc]">
                 {faqs.map((faq) => (
-                  <button
-                    key={faq}
-                    type="button"
-                    className="focus-ring flex w-full items-center justify-between py-6 text-left text-[1.15rem] font-medium text-[#171717]"
-                  >
-                    <span>{faq}</span>
-                    <ChevronDown className="size-5" />
-                  </button>
+                  <FAQItem key={faq} question={faq} />
                 ))}
               </div>
             </section>
@@ -485,7 +503,7 @@ export function PricingPageView() {
           <div className="mx-auto w-full max-w-[1320px] px-6">
             <div className="grid gap-12 xl:grid-cols-[1.1fr_2.4fr]">
               <div>
-                <p className="font-body text-[3rem] font-bold tracking-[-0.06em] text-[#171717]">envato</p>
+                <p className="font-body text-[3rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</p>
                 <div className="mt-4 flex gap-4 text-[#171717]">
                   {["ig", "tt", "fb", "yt", "rd", "pi", "x"].map((item) => (
                     <span key={item} className="text-lg font-semibold uppercase">
@@ -527,7 +545,7 @@ export function PricingPageView() {
             <div className="mt-14 border-t border-[#d9d1c7] pt-8">
               <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
                 <div className="flex flex-wrap gap-x-8 gap-y-3 text-[1.1rem] text-[#2f2f2f]">
-                  {["Envato Market", "Envato Tuts+", "Placeit by Envato", "Mixkit", "All Products", "Sitemap"].map((item) => (
+                  {["ZOR Market", "ZOR Learn", "ZOR Create", "Mixkit", "All Products", "Sitemap"].map((item) => (
                     <span key={item}>{item}</span>
                   ))}
                 </div>
@@ -538,7 +556,7 @@ export function PricingPageView() {
                 </div>
               </div>
               <p className="mt-6 text-[1rem] text-[#555]">
-                (c) 2026 Envato Trademarks and brands are the property of their respective owners.
+                (c) 2026 ZOR Trademarks and brands are the property of their respective owners.
               </p>
             </div>
           </div>
@@ -569,4 +587,25 @@ function iconForItem(item: string) {
   }
 
   return <ShieldCheck className={baseClass} />;
+}
+
+function FAQItem({ question }: { question: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="py-6">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="focus-ring flex w-full items-center justify-between text-left text-[1.15rem] font-medium text-[#171717]"
+      >
+        <span>{question}</span>
+        <ChevronDown className={`size-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "mt-4 max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+        <p className="text-[1.05rem] leading-relaxed text-[#444]">
+          This is a placeholder answer. In a real application, this would contain the detailed answer explaining the ZOR Elements licensing, limits, or billing cycles depending on the specific question asked.
+        </p>
+      </div>
+    </div>
+  );
 }

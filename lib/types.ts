@@ -1,10 +1,9 @@
 export type ProductCategory =
-  | "website-templates"
-  | "ui-kits"
   | "figma-templates"
   | "graphics"
-  | "illustrations"
-  | "free";
+  | "logos"
+  | "website-templates"
+  | "ai-images";
 
 export type ProductFormat = "Figma" | "Adobe XD" | "HTML" | "Sketch";
 

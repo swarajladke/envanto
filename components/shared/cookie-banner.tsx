@@ -18,7 +18,10 @@ export function CookieBanner() {
     setVisible(false);
   }
 
-  if (!visible) return null;
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const isAuthPage = pathname === "/signin" || pathname === "/signup";
+
+  if (!visible || isAuthPage) return null;
 
   return (
     <div className="fixed inset-x-3 bottom-3 z-[75] rounded-2xl border border-border bg-surface-elevated p-4 shadow-modal sm:inset-x-auto sm:right-4 sm:max-w-xl">
