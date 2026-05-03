@@ -18,9 +18,29 @@
   --warning: #f59e0b;
   --danger: #ef4444;
   --info: #3b82f6;
-  --shadow-card: 0 0 0 1px #d7e0d0, 0 10px 30px rgba(18, 35, 21, 0.06);
-  --shadow-hover: 0 0 0 1px #FFF700, 0 12px 34px rgba(255, 247, 0, 0.16);
+  --shadow-card: 0 0 0 1px #d7e0d0, 0 10px 30px rgba(18, 35, 21, 0.04);
+  --shadow-hover: 0 0 0 1px #FFF700, 0 16px 40px rgba(255, 247, 0, 0.12);
   --shadow-modal: 0 24px 80px rgba(18, 35, 21, 0.18);
+}
+
+/* Professional Visual Hooks */
+.mesh-subtle {
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(255, 247, 0, 0.03) 0, transparent 40%), 
+    radial-gradient(at 100% 0%, rgba(93, 92, 255, 0.02) 0, transparent 40%);
+  position: relative;
+}
+
+.glass-premium {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 228, 220, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.card-transition {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="light"] {

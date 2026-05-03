@@ -15,6 +15,7 @@ import {
   Image as ImageIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const pexelsImage = (id: string, width = 600) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
@@ -89,37 +90,38 @@ export function TemplateLanding() {
       </header>
 
       <main>
-        {/* Hero Section — exact ZOR typography & layout */}
-        <section className="relative bg-white pt-20 text-center">
-          <div className="mx-auto max-w-[1200px] px-6 mb-24">
-            {/* H1: Inter Bold, ~64px, #000, tight leading, slight negative tracking */}
-            <h1 className="font-inter text-[4rem] font-bold leading-[1.1] tracking-[-0.02em] text-black">
+        <section className="mesh-subtle pt-20 text-center">
+          <div className="mx-auto max-w-[1200px] px-6">
+            <h1 className="font-inter text-[3.2rem] md:text-[4.2rem] font-bold leading-tight tracking-[-0.03em] text-black">
               Premium UI Kits & Website Templates
             </h1>
-            {/* Subtitle: Inter Medium, ~24px, #333, 20px below heading */}
-            <p className="mt-5 text-[1.5rem] font-medium text-[#333]">
+            <p className="mt-6 text-[1.3rem] md:text-[1.6rem] font-medium text-[#4b433d] max-w-4xl mx-auto leading-relaxed opacity-90">
               Exquisite Figma kits, landing pages, and dashboard systems for world-class products.
             </p>
-            {/* CTA Button: #82D85D green, 40px below subtitle */}
-            <Link href="/products" className="mt-10 inline-flex h-[52px] items-center justify-center rounded-full bg-[#FFF700] px-10 text-[1rem] font-bold text-black hover:brightness-105 transition">
-              Browse Collection
-            </Link>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/products" className="inline-flex h-[64px] items-center justify-center rounded-full bg-[#FFF700] px-14 text-[1.1rem] font-bold text-black shadow-xl shadow-yellow-400/20 hover:scale-105 transition-all">
+                Browse Collection
+              </Link>
+              <Link href="/pricing" className="inline-flex h-[64px] items-center justify-center rounded-full bg-white border border-[#ece9df] px-10 text-[1.1rem] font-bold text-black hover:bg-gray-50 transition-all">
+                View Pricing
+              </Link>
+            </div>
           </div>
 
-          <div className="pb-12" style={{ background: 'linear-gradient(to bottom, #ffffff 50%, #f8efe4 50%)' }}>
-            {/* Split Hero Banner */}
+          <div className="pb-32 mt-16" style={{ background: 'linear-gradient(to bottom, transparent 50%, #f8efe4 50%)' }}>
+            {/* Split Hero Banner — Restored Exact Version */}
             <div className="relative w-full max-w-[1200px] mx-auto px-6">
-              <div className="relative h-[300px] w-full overflow-hidden rounded-[20px] shadow-xl bg-[#171717] flex">
+              <div className="relative h-[340px] w-full overflow-hidden rounded-[32px] shadow-2xl bg-[#171717] flex border border-white/10">
                 {/* Text Half */}
-                <div className="w-1/2 flex flex-col justify-center px-12 z-10 text-left">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="h-1 w-8 bg-[#FFF700] rounded-full" />
-                    <span className="text-[#FFF700] text-[0.8rem] font-bold uppercase tracking-wider">Premium Assets</span>
+                <div className="w-1/2 flex flex-col justify-center px-16 z-10 text-left">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="h-1 w-10 bg-[#FFF700] rounded-full" />
+                    <span className="text-[#FFF700] text-[0.85rem] font-bold uppercase tracking-[0.2em]">Premium Assets</span>
                   </div>
-                  <h2 className="text-white text-[2.2rem] font-bold leading-tight mb-4">
+                  <h2 className="text-white text-[2.5rem] font-bold leading-[1.1] mb-6">
                     Elevate your <span className="text-[#FFF700]">creative</span> workflow.
                   </h2>
-                  <p className="text-white/60 text-[0.95rem] leading-relaxed">
+                  <p className="text-white/60 text-[1rem] leading-relaxed max-w-[380px]">
                     Access curated templates, graphics, and UI kits designed to help your projects stand out.
                   </p>
                 </div>
@@ -133,7 +135,6 @@ export function TemplateLanding() {
                     className="object-cover"
                     priority
                   />
-                  {/* Subtle overlay gradient to blend with the black side if needed */}
                   <div className="absolute inset-0 bg-gradient-to-r from-[#171717] via-transparent to-transparent" />
                 </div>
               </div>
@@ -169,13 +170,31 @@ export function TemplateLanding() {
                <h2 className="text-[1.8rem] font-bold tracking-tight">Exquisite UI foundations for world-class digital experiences</h2>
                <Link href="/products" className="bg-[#171717] inline-flex justify-center items-center text-white px-6 py-3 rounded-full text-[0.9rem] font-bold">Explore all templates</Link>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {templates.map((t, i) => (
-                <Link href="/products" key={i} className="group cursor-pointer">
-                  <div className="relative aspect-[1.5/1] overflow-hidden rounded-[8px] bg-[#f4f4f4]">
-                    <Image src={t.image} alt={t.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {templates.slice(0, 9).map((t, i) => (
+                <Link 
+                  href="/products" 
+                  key={i} 
+                  className={cn(
+                    "group cursor-pointer card-transition",
+                    i === 0 ? "lg:col-span-2" : ""
+                  )}
+                >
+                  <div className={cn(
+                    "relative overflow-hidden rounded-[32px] bg-[#f4f4f4] border border-[#ece9df] shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 card-transition",
+                    i === 0 ? "aspect-[2/1]" : "aspect-[1.3/1]"
+                  )}>
+                    <Image src={t.image} alt={t.name} fill className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
                   </div>
-                  <h3 className="mt-4 text-[1.1rem] font-bold">{t.name}</h3>
+                  <div className="mt-6 flex items-center justify-between px-2">
+                    <div>
+                      <h3 className="text-[1.3rem] font-bold tracking-tight">{t.name}</h3>
+                      <p className="text-[0.95rem] text-[#777] mt-1 font-medium">Professional Template</p>
+                    </div>
+                    <div className="size-11 rounded-full border border-[#ece9df] flex items-center justify-center bg-white shadow-sm opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0">
+                      <ChevronRight className="size-5" />
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -199,15 +218,8 @@ export function TemplateLanding() {
                    </Link>
                 </div>
                 <div className="relative aspect-square">
-                   <div className="absolute inset-0 rounded-full bg-white/40 scale-110" />
-                   <div className="relative h-full w-full overflow-hidden rounded-full border-8 border-white shadow-xl">
+                   <div className="relative h-full w-full overflow-hidden rounded-full border-[12px] border-white shadow-2xl">
                       <Image src="https://images.pexels.com/photos/3826678/pexels-photo-3826678.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Creative User" fill className="object-cover" />
-                   </div>
-                   {/* Green squiggle accent placeholder */}
-                   <div className="absolute -bottom-4 -left-4 size-24 text-[#FFF700] opacity-50">
-                      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                         <path d="M10 50 Q 25 25, 40 50 T 70 50" stroke="currentColor" strokeWidth="4" fill="none" />
-                      </svg>
                    </div>
                 </div>
              </div>
@@ -234,12 +246,12 @@ export function TemplateLanding() {
                </div>
                <Link href="/products" className="bg-[#171717] inline-flex justify-center items-center text-white px-6 py-3 rounded-full text-[0.9rem] font-bold">Explore all categories</Link>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                {categories.map((cat, i) => (
-                 <Link key={i} href="/products" className="group flex flex-col bg-white border border-[#ece9df] rounded-[12px] p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="text-[1.15rem] font-bold mb-4">{cat.name}</h3>
-                    <div className="relative aspect-square overflow-hidden rounded-[8px] bg-[#f4f4f4]">
-                       <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                 <Link key={i} href="/products" className="group flex flex-col glass-premium rounded-[32px] p-7 card-transition border-none hover:shadow-2xl hover:-translate-y-2">
+                    <h3 className="text-[1.3rem] font-bold mb-6 tracking-tight">{cat.name}</h3>
+                    <div className="relative aspect-square overflow-hidden rounded-[20px] bg-[#f4f4f4] shadow-inner">
+                       <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" />
                     </div>
                  </Link>
                ))}
@@ -319,9 +331,11 @@ function PointItem({ title, desc }: { title: string, desc: string }) {
 
 function FaqItem({ question }: { question: string }) {
   return (
-    <div className="flex items-center justify-between p-6 bg-white border border-[#ece9df] rounded-[8px] cursor-pointer hover:border-[#FFF700] transition-colors">
-       <span className="text-[1.05rem] font-bold">{question}</span>
-       <ChevronDown className="size-5 text-[#999]" />
+    <div className="flex items-center justify-between p-6 glass-premium rounded-[20px] cursor-pointer hover:border-[#FFF700] border border-[#ece9df] transition-all hover:pl-8 group">
+       <span className="text-[1.1rem] font-bold group-hover:text-black transition-colors">{question}</span>
+       <div className="size-9 rounded-full border border-[#ece9df] flex items-center justify-center bg-white group-hover:border-[#FFF700] transition-colors">
+          <ChevronDown className="size-5 text-[#999] group-hover:text-black transition-colors" />
+       </div>
     </div>
   );
 }
