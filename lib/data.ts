@@ -2,8 +2,8 @@ import type { DownloadItem, Product, ProductCategory, Testimonial } from "@/lib/
 
 export const brand = {
   name: "PixelForge",
-  creator: "Aarav Mehta",
-  tagline: "Premium Digital Products by Aarav Mehta"
+  creator: "PixelForge Studio",
+  tagline: "Premium Digital Products by PixelForge Studio"
 };
 
 export const categoryMeta: { value: ProductCategory; label: string }[] = [

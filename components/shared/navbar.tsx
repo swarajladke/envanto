@@ -19,6 +19,7 @@ export function Navbar() {
   const isPricingPage = pathname === "/pricing";
   const isProductsPage = pathname === "/products" || pathname.startsWith("/products/");
   const isDashboardPage = pathname === "/dashboard";
+  const isAdminPage = pathname.startsWith("/admin");
   const isAuthPage = pathname === "/signin" || pathname === "/signup";
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -41,7 +42,7 @@ export function Navbar() {
 
   const cartCount = useMemo(() => (mounted ? totalItems : 0), [mounted, totalItems]);
 
-  if (isPricingPage || isProductsPage || isAuthPage || isDashboardPage || isHomePage) return null;
+  if (isPricingPage || isProductsPage || isAuthPage || isDashboardPage || isHomePage || isAdminPage) return null;
 
   return (
     <>
@@ -54,7 +55,7 @@ export function Navbar() {
         >
           <div className="container-shell flex h-[76px] items-center justify-between gap-4">
             <Link href="/" className="focus-ring rounded-md">
-              <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</span>
+              <span className="font-body text-[2rem] font-bold tracking-[-0.06em] text-[#171717]">PixelForge</span>
             </Link>
 
             <div className="hidden items-center gap-2 lg:flex">
@@ -71,10 +72,10 @@ export function Navbar() {
                 Sign Up
               </Link>
               <LinkButton
-                href="/pricing"
-                className="ml-2 h-12 rounded-lg bg-[#8CF45D] px-6 text-base font-semibold text-[#171717] hover:brightness-95"
+                href="/products"
+                className="ml-2 h-12 rounded-lg bg-[#FFF700] px-6 text-base font-semibold text-[#171717] hover:brightness-95"
               >
-                Get unlimited downloads
+                Explore Collection
               </LinkButton>
             </div>
 
@@ -216,8 +217,8 @@ export function Navbar() {
                   </Link>
                 </div>
               )}
-              <LinkButton href="/pricing" className="w-full justify-center bg-[#8CF45D] text-[#171717] hover:brightness-95">
-                {isHomePage ? "Get unlimited downloads" : "Get Access"}
+              <LinkButton href="/products" className="w-full justify-center bg-[#FFF700] text-[#171717] hover:brightness-95">
+                {isHomePage ? "Explore Collection" : "Get Access"}
               </LinkButton>
             </div>
             {!isHomePage && (

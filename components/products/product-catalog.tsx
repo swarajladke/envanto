@@ -23,19 +23,19 @@ const MARKETPLACE_PAGE_SIZE = 33;
 const marketplaceFooterColumns = [
   {
     title: "Discover",
-    links: ["Stock Video", "Video Templates", "Royalty-Free Music", "Stock Photos", "Fonts", "Popular Searches"]
+    links: ["Figma Templates", "Website Templates", "UI Kits", "Dashboard Kits", "Landing Pages", "Popular Designs"]
   },
   {
-    title: "License & User Terms",
-    links: ["License Terms", "Terms & Conditions", "Privacy Policy", "Fair Use Policy", "Cookies", "Cookie Settings"]
+    title: "License & Terms",
+    links: ["License Terms", "Terms & Conditions", "Privacy Policy", "Commercial Use", "Cookies", "Support"]
   },
   {
     title: "Resources",
-    links: ["Help Center", "Discover Blog", "Design", "Marketing", "Web Design", "Become an Affiliate"]
+    links: ["Figma Guides", "Design Blog", "UX Design", "Marketing", "Web Design", "Become an Affiliate"]
   },
   {
-    title: "About Us",
-    links: ["Who We Are", "Our Products", "Our Purpose", "Authors", "Become an Author", "Author Help Center"]
+    title: "About",
+    links: ["Who We Are", "Our Studio", "Our Purpose", "Contact", "Help Center"]
   }
 ];
 
@@ -165,16 +165,16 @@ export function ProductCatalog({
             {marketplaceMode ? (
               <>
                 <div className="flex flex-wrap items-center gap-2 text-[0.82rem] font-medium text-[#7a6f65]">
-                  <span className="hover:text-[#171717] cursor-pointer">All Items</span>
-                  <span className="text-[#bbaaa0]">»</span>
-                  <span className="hover:text-[#171717] cursor-pointer">Video Templates</span>
-                  <span className="text-[#bbaaa0]">»</span>
-                  <span className="text-[#4e4741]">After Effects</span>
+                   <span className="hover:text-[#171717] cursor-pointer">All Assets</span>
+                   <span className="text-[#bbaaa0]">»</span>
+                   <span className="hover:text-[#171717] cursor-pointer">UI Kits</span>
+                   <span className="text-[#bbaaa0]">»</span>
+                   <span className="text-[#4e4741]">Figma Templates</span>
                 </div>
               </>
             ) : (
               <p className="text-[0.78rem] font-medium uppercase tracking-[0.22em] text-[#9b7d6b]">
-                ZOR-style catalog
+                PixelForge-style catalog
               </p>
             )}
 
@@ -187,10 +187,10 @@ export function ProductCatalog({
                 >
                   {marketplaceMode ? (
                     <>
-                      <span className="font-bold bg-gradient-to-r from-[#d92c7d] to-[#7f39b0] bg-clip-text text-transparent">After Effects</span> <span className="font-medium">Video Templates</span>
+                      <span className="font-bold bg-gradient-to-r from-[#FFF700] to-[#EAB308] bg-clip-text text-transparent">Premium UI</span> <span className="font-medium">& Website Templates</span>
                     </>
                   ) : (
-                    heading ?? "Motion Graphics Video Templates"
+                    heading ?? "Premium UI & Website Templates"
                   )}
                 </h1>
                 <p
@@ -200,11 +200,11 @@ export function ProductCatalog({
                 >
                   {marketplaceMode ? (
                     <>
-                      Produce stand-out videos with studio-quality After Effects templates and visual effects.<br/>
-                      Customize your projects with fully editable <a href="#" className="underline decoration-[#999] underline-offset-4">logo animations</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">slideshows</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">text</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">titles</a> and <a href="#" className="underline decoration-[#999] underline-offset-4">transitions</a>.
+                      Accelerate your workflow with professional Figma templates, dashboard kits, and landing pages.<br/>
+                      All assets are handcrafted with <a href="#" className="underline decoration-[#999] underline-offset-4">auto-layout</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">design tokens</a>, <a href="#" className="underline decoration-[#999] underline-offset-4">variables</a>, and <a href="#" className="underline decoration-[#999] underline-offset-4">responsive frames</a>.
                     </>
                   ) : (
-                    description ?? "Browse marketplace-style template results with compact filters, dense previews, and faster scanning."
+                    description ?? "Browse our premium studio inventory with refined filters and high-fidelity previews."
                   )}
                 </p>
                 {marketplaceMode && (
@@ -553,24 +553,26 @@ function FilterPanel({
 
       {compact && (
         <>
-          <FilterGroup title="Applications Supported">
-            {["After Effects", "Premiere Pro", "Apple Motion", "Final Cut Pro", "DaVinci Resolve"].map((app) => (
+          <FilterGroup title="Software">
+            {["Figma", "Sketch", "Adobe XD", "Framer", "HTML/React"].map((app) => (
               <label key={app} className="flex cursor-pointer items-center gap-3 py-1.5 text-[0.95rem] text-[#171717]">
-                <input type="checkbox" defaultChecked={app === "After Effects"} className="h-4 w-4 rounded border-[#d8cec3] bg-white text-[#171717] focus:ring-[#171717]" />
+                <input type="checkbox" className="h-4 w-4 rounded border-[#d8cec3] bg-white text-[#171717] focus:ring-[#171717]" />
                 <span className="flex-1">{app}</span>
               </label>
             ))}
           </FilterGroup>
 
-          <FilterGroup title="Plugins">
-            <label className="flex cursor-pointer items-center gap-3 py-1.5 text-[0.95rem] text-[#171717]">
-              <input type="checkbox" className="h-4 w-4 rounded border-[#d8cec3] bg-white text-[#171717] focus:ring-[#171717]" />
-              <span className="flex-1">No plugins required</span>
-            </label>
+          <FilterGroup title="Design Features">
+            {["Auto-layout", "Design Tokens", "Style Guide", "Dark Mode", "Responsive"].map((feat) => (
+              <label key={feat} className="flex cursor-pointer items-center gap-3 py-1.5 text-[0.95rem] text-[#171717]">
+                <input type="checkbox" className="h-4 w-4 rounded border-[#d8cec3] bg-white text-[#171717] focus:ring-[#171717]" />
+                <span className="flex-1">{feat}</span>
+              </label>
+            ))}
           </FilterGroup>
 
-          <FilterGroup title="Resolution">
-            {["720p (HD)", "1080p (Full HD)", "4K", "8K (UHD)"].map((res) => (
+          <FilterGroup title="Asset Scale">
+            {["Single Page", "Landing Kit", "Full Design System", "Component Library"].map((res) => (
               <label key={res} className="flex cursor-pointer items-center gap-3 py-1.5 text-[0.95rem] text-[#171717]">
                 <input type="checkbox" className="h-4 w-4 rounded border-[#d8cec3] bg-white text-[#171717] focus:ring-[#171717]" />
                 <span className="flex-1">{res}</span>
@@ -708,14 +710,14 @@ function MarketplaceTile({
                   <button type="button" aria-label="Show similar items" className="pointer-events-auto flex items-center gap-1.5 rounded-[4px] bg-white/20 px-2 py-1 text-[0.75rem] font-medium text-white backdrop-blur-md transition hover:bg-white/30">
                     <Copy className="size-[14px]" /> Similar
                   </button>
-                  <button type="button" aria-label="Download" className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-[#8CF45D] text-[#171717] transition hover:brightness-95">
+                  <button type="button" aria-label="Download" className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-[#FFF700] text-[#171717] transition hover:brightness-95">
                     <Download className="size-[16px]" />
                   </button>
                 </div>
               </div>
 
               <div className="absolute bottom-0 left-0 h-1 w-full bg-white/20">
-                <div className="h-full w-0 bg-[#8CF45D] transition-all duration-[4000ms] ease-linear group-hover:w-full" />
+                <div className="h-full w-0 bg-[#FFF700] transition-all duration-[4000ms] ease-linear group-hover:w-full" />
               </div>
             </div>
           )}
@@ -808,9 +810,13 @@ function MarketplaceTopbar() {
         <div className="mx-auto w-full max-w-[1260px] px-4">
           <div className="flex items-center justify-between gap-4 py-2">
             <div className="flex items-center gap-8">
-              <Link href="/" className="focus-ring flex items-center rounded-md">
-                <svg className="mr-1.5" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.16 3.96C20.66 3.46 19.98 3.16 19.23 3.13C18.66 3.11 18.06 3.23 17.43 3.48C13.62 5.01 9.4 8.65 6.7 12.75C5.86 14.02 5.17 15.34 4.67 16.66C4.42 17.34 4.09 18.3 4.29 19.12C4.42 19.68 4.77 20.21 5.31 20.59C5.91 21.01 6.64 21.13 7.33 20.97C8.19 20.76 9.07 19.99 9.8 19.06C11.83 16.48 13.56 12.98 14.88 9.29C15.5 7.55 15.89 5.8 15.93 4.23C15.94 3.79 15.77 3.46 15.54 3.23C15.3 3 14.96 2.91 14.6 2.94C13.88 3.01 13.06 3.33 12.19 3.84C8.61 5.92 4.96 10.37 2.84 15.68C2.55 16.4 2.29 17.15 2.08 17.91C1.94 18.42 1.83 18.94 1.76 19.46L1.67 20.19L2.34 19.86C4.01 19.03 5.48 17.65 6.6 15.95C9.37 11.75 13.73 8.04 17.65 6.47C18.2 6.25 18.72 6.13 19.21 6.15C19.5 6.16 19.74 6.24 19.89 6.39C20.04 6.54 20.1 6.75 20.05 6.99C19.89 7.82 19.34 8.76 18.44 9.68C16.92 11.23 14.54 12.87 11.66 14.28L10.96 14.62L11.58 15.02C13.25 16.1 15.11 16.92 17.06 17.43C17.69 17.6 18.33 17.69 18.97 17.69C19.97 17.69 20.93 17.45 21.75 16.97C22.75 16.4 23.47 15.42 23.77 14.24C24.08 13 23.95 11.63 23.4 10.37C22.84 9.1 21.9 8.02 20.73 7.3C19.78 6.72 18.72 6.36 17.6 6.25C17.7 6.07 17.81 5.88 17.92 5.68C18.66 4.3 19.68 3.52 20.72 3.44C20.98 3.42 21.24 3.49 21.46 3.66L21.84 3.95L21.16 3.96Z" fill="#8CF45D"/></svg>
-                <span className="font-body text-[1.55rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</span>
+              <Link href="/" className="focus-ring flex items-center rounded-md group">
+                <div className="size-8 shrink-0 rounded-full bg-[#171717] flex items-center justify-center mr-2 shadow-sm group-hover:scale-105 transition-transform">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.16 3.96C20.66 3.46 19.98 3.16 19.23 3.13C18.66 3.11 18.06 3.23 17.43 3.48C13.62 5.01 9.4 8.65 6.7 12.75C5.86 14.02 5.17 15.34 4.67 16.66C4.42 17.34 4.09 18.3 4.29 19.12C4.42 19.68 4.77 20.21 5.31 20.59C5.91 21.01 6.64 21.13 7.33 20.97C8.19 20.76 9.07 19.99 9.8 19.06C11.83 16.48 13.56 12.98 14.88 9.29C15.5 7.55 15.89 5.8 15.93 4.23C15.94 3.79 15.77 3.46 15.54 3.23C15.3 3 14.96 2.91 14.6 2.94C13.88 3.01 13.06 3.33 12.19 3.84C8.61 5.92 4.96 10.37 2.84 15.68C2.55 16.4 2.29 17.15 2.08 17.91C1.94 18.42 1.83 18.94 1.76 19.46L1.67 20.19L2.34 19.86C4.01 19.03 5.48 17.65 6.6 15.95C9.37 11.75 13.73 8.04 17.65 6.47C18.2 6.25 18.72 6.13 19.21 6.15C19.5 6.16 19.74 6.24 19.89 6.39C20.04 6.54 20.1 6.75 20.05 6.99C19.89 7.82 19.34 8.76 18.44 9.68C16.92 11.23 14.54 12.87 11.66 14.28L10.96 14.62L11.58 15.02C13.25 16.1 15.11 16.92 17.06 17.43C17.69 17.6 18.33 17.69 18.97 17.69C19.97 17.69 20.93 17.45 21.75 16.97C22.75 16.4 23.47 15.42 23.77 14.24C24.08 13 23.95 11.63 23.4 10.37C22.84 9.1 21.9 8.02 20.73 7.3C19.78 6.72 18.72 6.36 17.6 6.25C17.7 6.07 17.81 5.88 17.92 5.68C18.66 4.3 19.68 3.52 20.72 3.44C20.98 3.42 21.24 3.49 21.46 3.66L21.84 3.95L21.16 3.96Z" fill="#FFF700"/>
+                  </svg>
+                </div>
+                <span className="font-body text-[1.55rem] font-bold tracking-[-0.06em] text-[#171717]">PixelForge</span>
               </Link>
               <nav className="hidden items-center gap-5 xl:flex">
                 {["Figma Templates", "Graphics", "Logos", "Website Templates", "AI Images"].map((item) => (
@@ -838,7 +844,7 @@ function MarketplaceTopbar() {
               </Link>
               <Link
                 href="/pricing"
-                className="focus-ring inline-flex h-9 items-center justify-center whitespace-nowrap rounded-[4px] bg-[#8CF45D] px-5 text-[0.88rem] font-semibold text-[#171717] transition hover:brightness-95"
+                className="focus-ring inline-flex h-9 items-center justify-center whitespace-nowrap rounded-[4px] bg-[#FFF700] px-5 text-[0.88rem] font-semibold text-[#171717] transition hover:brightness-95"
               >
                 Get unlimited downloads
               </Link>
@@ -886,7 +892,7 @@ function MarketplaceFooter() {
       <div className="mx-auto w-full max-w-[1180px] px-4">
         <div className="grid gap-8 xl:grid-cols-[0.8fr_2.5fr]">
           <div>
-            <p className="font-body text-[2.15rem] font-bold tracking-[-0.06em] text-[#171717]">ZOR</p>
+            <p className="font-body text-[2.15rem] font-bold tracking-[-0.06em] text-[#171717]">PixelForge</p>
             <div className="mt-3 flex gap-3 text-[#171717]">
               {["ig", "tt", "fb", "yt", "rd", "pi", "x"].map((item) => (
                 <span key={item} className="text-[0.95rem] font-semibold uppercase">
@@ -915,7 +921,7 @@ function MarketplaceFooter() {
         <div className="mt-8 border-t border-[#ddd1c6] pt-4">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-[1rem] text-[#4a433c]">
-              {["ZOR Market", "ZOR Learn", "ZOR Create", "Mixkit", "All Products", "Sitemap"].map((item) => (
+              {["PixelForge Market", "PixelForge Learn", "PixelForge Create", "Mixkit", "All Products", "Sitemap"].map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>

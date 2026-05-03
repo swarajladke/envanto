@@ -13,7 +13,7 @@ const footerLinks = [
 
 export function Footer() {
   const pathname = usePathname();
-  if (pathname === "/" || pathname === "/pricing" || pathname === "/products" || pathname === "/signin" || pathname === "/signup" || pathname === "/dashboard") return null;
+  if (pathname === "/" || pathname === "/pricing" || pathname === "/products" || pathname === "/signin" || pathname === "/signup" || pathname === "/dashboard" || pathname.startsWith("/admin")) return null;
 
   return (
     <footer className="border-t border-border bg-white">

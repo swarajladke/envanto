@@ -4,8 +4,8 @@ import { categoryMeta, products } from "@/lib/data";
 import type { ProductCategory } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Motion Graphics Video Templates",
-  description: "Explore an ZOR-style marketplace catalog for templates, graphics, UI kits, and digital assets."
+  title: "Premium UI Kits & Website Templates",
+  description: "Browse the PixelForge collection of high-end Figma templates, dashboard kits, and professional design systems."
 };
 
 export default function ProductsPage({
@@ -23,8 +23,8 @@ export default function ProductsPage({
     <ProductCatalog
       sourceProducts={products}
       defaultCategories={defaultCategories}
-      heading="After Effects Video Templates"
-      description="Professional templates and assets locally After Effects templates and After Effects. Customize your projects with fully editable After Effects templates, elements, and other AE templates."
+      heading="Premium UI & Website Templates"
+      description="Accelerate your workflow with handcrafted Figma kits, landing pages, and comprehensive design systems built for world-class products."
       marketplaceMode
     />
   );
